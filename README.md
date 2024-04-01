@@ -12,3 +12,33 @@ Currently, two official plugins are available:
 1.  `cd YOUR_APPLICATION`
 2.  `npm install`
 3.  `npm run dev`
+
+## Folder Structure
+
+```
+.
+├── package.json
+├── postcss.config.js
+├── vite.config.js
+├── index.html
+├── public
+│   ├── assets
+│   │   └── images --------- All Project Images
+│   │   └── icons --------- All Project Icons
+│   ├── manifest.json
+├── README.md
+├── src
+│   ├── App.jsx
+│   ├── assets
+│   │   └── fonts ---------- Project fonts
+│   ├── Components --------- UI and Detected Common Components
+│   ├── constants ---------- Project constants, eg: string consts
+│   ├── hooks -------------- Helpful Hooks
+│   ├── main.jsx
+│   ├── Root -------------- All pages and RootLayout
+│   ├── hooks ---------- useDebounce.ts
+│   ├── globals.css
+│   └── lib
+│       └── utils.ts ------- Helpful utils
+└── tailwind.config.js ----- Entire theme config, colors, fonts etc.
+```
