@@ -23,53 +23,53 @@ function Navbar() {
 
             <nav className="ml-auto flex items-center">
               <ul className="flex flex-1 items-center justify-end space-x-6">
-                <a
-                  href="#"
+                <Link
+                  to={"/"}
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Home
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to={"/shop"}
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Shop
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to={"/about"}
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   About us
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to={"/contact"}
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Contact us
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to={"/tools"}
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Tools
-                </a>
+                </Link>
               </ul>
             </nav>
 
             <div className="ml-auto hidden lg:flex items-center justify-center gap-3">
               <div className="flex text-[20px] items-center justify-center gap-8">
-                <a href="#">
+                <Link to={"/"}>
                   <ion-icon name="person-outline"></ion-icon>
-                </a>
-                <a href="#">
+                </Link>
+                <Link to={"/"}>
                   <ion-icon name="search-outline"></ion-icon>
-                </a>
-                <a href="#">
+                </Link>
+                <Link to={"/"}>
                   <ion-icon name="heart-outline"></ion-icon>
-                </a>
-                <a href="#">
+                </Link>
+                <Link to={"/cart"}>
                   <ion-icon name="cart-outline"></ion-icon>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
