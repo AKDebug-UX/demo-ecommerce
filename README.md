@@ -32,13 +32,12 @@ Currently, two official plugins are available:
 │   ├── assets
 │   │   └── fonts ---------- Project fonts
 │   ├── Components --------- UI and Detected Common Components
-│   ├── constants ---------- Project constants, eg: string consts
 │   ├── hooks -------------- Helpful Hooks
 │   ├── main.jsx
-│   ├── Root -------------- All pages and RootLayout
-│   ├── hooks ---------- useDebounce.ts
+│   ├── _root -------------- All pages and RootLayout
+│   ├── hooks ---------- useDebounce.js
 │   ├── globals.css
 │   └── lib
-│       └── utils.ts ------- Helpful utils
+│       └── utils.js ------- Helpful utils
 └── tailwind.config.js ----- Entire theme config, colors, fonts etc.
 ```
