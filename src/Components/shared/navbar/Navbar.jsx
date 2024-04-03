@@ -56,7 +56,7 @@ function Navbar() {
               </ul>
             </nav>
 
-            <div className="ml-auto hidden lg:flex items-center justify-center gap-3">
+            <div className="ml-auto hidden md:flex items-center justify-center gap-3">
               <div className="flex text-[20px] items-center justify-center gap-8">
                 <Link to={"/"}>
                   <ion-icon name="person-outline"></ion-icon>
