@@ -7,9 +7,8 @@ html {
   @apply font-Poppins scroll-smooth;
 }
 body {
-  @apply bg-[#1e2026];
   overflow-x: hidden;
-  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 a{

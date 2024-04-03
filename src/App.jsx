@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./_root/home";
-import Navbar from "./Components/shared/navbar/Navbar";
+import Cart from "./_root/cart/index";
 
 function App() {
   return (
     <>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path='/login' element={<Login/>} /> */}
-        {/* <Route path='/signup' element={<Signup/>} /> */}
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </>
   );
