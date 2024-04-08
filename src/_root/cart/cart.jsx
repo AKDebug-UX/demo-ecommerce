@@ -1,7 +1,10 @@
 import React from "react";
 import product_1 from "../../assets/images/product_1.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
+  const navigate = useNavigate();
+
   return (
     <div className="flex bg-blue h-[30em] w-full items-start justify-center gap-6 p-12">
       <div>
@@ -39,7 +42,10 @@ export default function Cart() {
           <div className="text-black font-bold">Total</div>
           <div className="text-[#B88E2F]">Rs. 50,000.00</div>
         </div>
-        <button className="border border-black mt-9 text-black hover:text-white bg-none hover:bg-black font-bold px-8 py-3 rounded-lg">
+        <button
+          onClick={() => navigate(`/checkout`)}
+          className="border border-black mt-9 text-black hover:text-white bg-none hover:bg-black font-bold px-8 py-3 rounded-lg"
+        >
           Check Out
         </button>
       </div>
