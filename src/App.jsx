@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./_root/home";
 import Cart from "./_root/cart/index";
+import CheckOut from "./_root/CheckOut/index";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<CheckOut />} />
       </Routes>
     </>
   );
