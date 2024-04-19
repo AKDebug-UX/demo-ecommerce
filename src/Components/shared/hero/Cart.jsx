@@ -11,7 +11,7 @@ const CartHero = () => {
       />
       <section className="flex absolute mx-auto ml-12 top-[13em] items-center justify-center">
         <div className="flex mx-auto font-bold text-black text-center z-99 items-center justify-center">
-          <Link to={"/"}>Home</Link> <ion-icon name="caret-forward-outline"></ion-icon> <Link to={"/"}>Cart</Link>
+          <Link to={"/home"}>Home</Link> <ion-icon name="caret-forward-outline"></ion-icon> <Link to={"/home"}>Cart</Link>
         </div>
       </section>
     </div>
