@@ -4,6 +4,7 @@ import SignIn from "./Auths/signin";
 import Home from "./_root/home";
 import Cart from "./_root/cart/index";
 import CheckOut from "./_root/CheckOut/index";
+import Shop from "./_root/shop/index"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<CheckOut />} />
+        <Route path="/shop" element={<Shop/>} />
       </Routes>
     </>
   );
