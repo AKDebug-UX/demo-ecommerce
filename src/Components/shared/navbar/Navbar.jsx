@@ -12,7 +12,7 @@ function Navbar() {
           <div className="flex flex-row h-20 justify-between items-center">
             {/* Logo */}
             <div className="flex lg:ml-0">
-              <Link to={"/"} className="flex">
+              <Link to={"/home"} className="flex">
                 <div className="flex ">
                   <h1 className=" text-2xl font-bold text-black  px-2 py-1 rounded">
                     E-Commerce
@@ -24,7 +24,7 @@ function Navbar() {
             <nav className="ml-auto md:flex items-center hidden">
               <ul className="flex flex-1 items-center justify-end space-x-6">
                 <Link
-                  to={"/"}
+                  to={"/home"}
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Home
