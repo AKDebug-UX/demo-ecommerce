@@ -1,24 +1,51 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../Components/shared/navbar/Navbar";
-import Footer from "../Components/shared/footer/Footer";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase-config";
+import Navbar from "../Components/shared/navbar/Navbar";
+import { auth, db } from "../firebase-config";
+import {
+  addDoc,
+  collection,
+  Timestamp,
+  // doc,
+  // serverTimestamp,
+  // updateDoc,
+} from "firebase/firestore";
+import Footer from "../Components/shared/footer/Footer";
+// import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
-const SigninForm = () => {
+const SignupForm = () => {
   const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  // ============================== SIGN IN
+  // ============================== SIGN UP
+  const createUserAccount = async () => {
+    // setLoading(true);
+    if (name === "" || username === "" || email === "" || password === "") {
+      return toast({ title: "All fields are required" });
+    }
 
-  const signInAccount = async () => {
-    setLoading(true);
     try {
-      const result = await signInWithEmailAndPassword(auth, email, password);
-      toast.success("Login successful", {
+      const users = await createUserWithEmailAndPassword(auth, email, password);
+
+      console.log(users);
+
+      const user = {
+        name: name,
+        username: username,
+        uid: users.user.uid,
+        email: users.user.email,
+        time: Timestamp.now(),
+        appName: "SquareMaX",
+      };
+      const userRef = collection(db, "users");
+      await addDoc(userRef, user);
+      toast.success("Signup successful", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: true,
@@ -28,15 +55,16 @@ const SigninForm = () => {
         progress: undefined,
         theme: "colored",
       });
-      localStorage.setItem("user", JSON.stringify(result.user));
-      navigate("/home");
+      setName("");
+      setUsername("");
+      setEmail("");
+      setPassword("");
+      navigate("/");
       setLoading(false);
-      console.log(result);
     } catch (error) {
-      console.error("An error occurred:");
-      toast({ title: "Incorrect Email and Password" });
-      setLoading(isLoading);
-      // toast({ title: "Login failed. Please try again."});
+      console.log(error);
+      toast.error("EMAIL_EXISTS");
+      setLoading(false);
     }
   };
 
@@ -46,12 +74,37 @@ const SigninForm = () => {
       <div className="flex flex-row ml-12">
         <div className="flex flex-col gap-5 ml-12 my-12 w-full">
           <h2 className="text-[30px] text-black font-bold pt-5 sm:pt-12">
-            Log in to your account
+            Create a new account
           </h2>
           <p className="text-primary_A2 small-medium md:base-regular mt-2">
-            Welcome back! Please enter your details.
+            To use Ecommerce, Please enter your details
           </p>
+
           <div className="flex flex-col gap-5 w-full mt-4">
+            <div>
+              <label>Name</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Akorede Salaudeen"
+                className="border rounded p-2 w-full"
+                required
+              />
+            </div>
+
+            <div>
+              <label>Username</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="akorede123"
+                className="border rounded p-2 w-full"
+                required
+              />
+            </div>
+
             <div>
               <label>Email</label>
               <input
@@ -78,7 +131,7 @@ const SigninForm = () => {
 
             <button
               type="submit"
-              onClick={signInAccount}
+              onClick={createUserAccount}
               className="bg-black text-white p-3 rounded-md"
             >
               {isLoading ? (
@@ -87,17 +140,14 @@ const SigninForm = () => {
                   Loading...
                 </div>
               ) : (
-                "Log in"
+                "Sign Up"
               )}
             </button>
 
             <p className="text-small-regular text-light-2 text-left mt-2">
-              Don&apos;t have an account?
-              <Link
-                to="/sign-up"
-                className="text-[blue] text-small-semibold ml-1"
-              >
-                Sign up
+              Already have an account?
+              <Link to="/" className="text-[blue] text-small-semibold ml-1">
+                Log in
               </Link>
             </p>
           </div>
@@ -109,4 +159,4 @@ const SigninForm = () => {
   );
 };
 
-export default SigninForm;
+export default SignupForm;
