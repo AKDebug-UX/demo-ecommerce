@@ -29,7 +29,7 @@ const SigninForm = () => {
         theme: "colored",
       });
       localStorage.setItem("user", JSON.stringify(result.user));
-      navigate("/");
+      navigate("/home");
       setLoading(false);
       console.log(result);
     } catch (error) {
