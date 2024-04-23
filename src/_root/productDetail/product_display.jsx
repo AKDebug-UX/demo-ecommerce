@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import fetchProductById from "../../utils/Products/GetProductById";
 import { useParams } from "react-router-dom";
-use
 
 export default function ProductDisplay() {
   const [product, setProduct] = useState(null);
