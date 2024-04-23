@@ -10,15 +10,28 @@ const FilterBar = ({
       {/* Items per page */}
 
       {/* Search bar */}
-      <div className="flex items-center gap-6">
+      <div className="md:flex hidden items-center gap-6">
         <div className="">
-          <h1 className="text-gray-900 font-semibold flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M14 12v7.88c.04.3-.06.62-.29.83a.996.996 0 0 1-1.41 0l-2.01-2.01a.99.99 0 0 1-.29-.83V12h-.03L4.21 4.62a1 1 0 0 1 .17-1.4c.19-.14.4-.22.62-.22h14c.22 0 .43.08.62.22a1 1 0 0 1 .17 1.4L14.03 12z"/></svg>Filter</h1>
+          <h1 className="text-gray-900 font-semibold flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M14 12v7.88c.04.3-.06.62-.29.83a.996.996 0 0 1-1.41 0l-2.01-2.01a.99.99 0 0 1-.29-.83V12h-.03L4.21 4.62a1 1 0 0 1 .17-1.4c.19-.14.4-.22.62-.22h14c.22 0 .43.08.62.22a1 1 0 0 1 .17 1.4L14.03 12z"
+              />
+            </svg>
+            Filter
+          </h1>
         </div>
 
         <div className="border-s border-gray-900 px-4">
-            <p>Showing 1-16 of 32 results</p>
+          <p>Showing 1-16 of 32 results</p>
         </div>
-        <div className="">
+        <div className="hidden">
           <input
             type="text"
             id="search"
