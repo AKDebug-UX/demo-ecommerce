@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
+import Navbar from "../Components/shared/navbar/Navbar";
 import { auth, db } from "../firebase-config";
 import {
   addDoc,
@@ -11,6 +12,7 @@ import {
   // serverTimestamp,
   // updateDoc,
 } from "firebase/firestore";
+import Footer from "../Components/shared/footer/Footer";
 // import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 const SignupForm = () => {
@@ -68,91 +70,91 @@ const SignupForm = () => {
 
   return (
     <>
-      <div className="flex w-full sm:w-[60%] mx-auto mt-[5em] p-5 justify-center items-center flex-col">
-        {/* <img src="/assets/images/logo.svg" alt="logo" /> */}
-
-        <h2 className="text-[30px] text-white font-bold pt-5 sm:pt-12">
-          Create a new account
-        </h2>
-        <p className="text-primary_A2 small-medium md:base-regular mt-2">
-          To use SquareMax, Please enter your details
-        </p>
-
-        <div className="flex flex-col gap-5 w-full mt-4">
-          <div>
-            <label>Name</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Akorede Salaudeen"
-              className="shad-input w-full px-3 mt-2 rounded-md"
-              required
-            />
-          </div>
-
-          <div>
-            <label>Username</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="akorede123"
-              className="shad-input w-full px-3 mt-2 rounded-md"
-              required
-            />
-          </div>
-
-          <div>
-            <label>Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="......54@gmail.com"
-              className="shad-input w-full px-3 mt-2 rounded-md"
-              required
-            />
-          </div>
-
-          <div>
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="********"
-              className="shad-input w-full px-3 mt-2 rounded-md"
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            onClick={createUserAccount}
-            className="bg-primary_A1 text-white p-3 rounded-md"
-          >
-            {isLoading ? (
-              <div className="flex gap-3 justify-center items-center">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-4 border-white"></div>
-                Loading...
-              </div>
-            ) : (
-              "Sign Up"
-            )}
-          </button>
-
-          <p className="text-small-regular text-light-2 text-center mt-2">
-            Already have an account?
-            <Link
-              to="/"
-              className="text-primary_A2 text-small-semibold ml-1"
-            >
-              Log in
-            </Link>
+      <Navbar />
+      <div className="flex flex-row ml-12">
+        <div className="flex flex-col gap-5 ml-12 my-12 w-full">
+          <h2 className="text-[30px] text-black font-bold pt-5 sm:pt-12">
+            Create a new account
+          </h2>
+          <p className="text-primary_A2 small-medium md:base-regular mt-2">
+            To use Ecommerce, Please enter your details
           </p>
+
+          <div className="flex flex-col gap-5 w-full mt-4">
+            <div>
+              <label>Name</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Akorede Salaudeen"
+                className="border rounded p-2 w-full"
+                required
+              />
+            </div>
+
+            <div>
+              <label>Username</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="akorede123"
+                className="border rounded p-2 w-full"
+                required
+              />
+            </div>
+
+            <div>
+              <label>Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="......54@gmail.com"
+                className="border rounded p-2 w-full"
+                required
+              />
+            </div>
+
+            <div>
+              <label>Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="********"
+                className="border rounded p-2 w-full"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              onClick={createUserAccount}
+              className="bg-black text-white p-3 rounded-md"
+            >
+              {isLoading ? (
+                <div className="flex gap-3 justify-center items-center">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-4 border-white"></div>
+                  Loading...
+                </div>
+              ) : (
+                "Sign Up"
+              )}
+            </button>
+
+            <p className="text-small-regular text-light-2 text-left mt-2">
+              Already have an account?
+              <Link to="/" className="text-[blue] text-small-semibold ml-1">
+                Log in
+              </Link>
+            </p>
+          </div>
         </div>
+        <div className="w-full"></div>
       </div>
+      <Footer />
     </>
   );
 };
