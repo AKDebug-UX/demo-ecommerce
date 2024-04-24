@@ -7,7 +7,7 @@ function Navbar() {
       <header className="relative bg-white">
         <nav
           aria-label="Top"
-          className="bg-gray-100 px-4 sm:px-6 lg:px-8 shadow-xl "
+          className="bg-gray-100 px-2 sm:px-6 lg:px-8 shadow-xl "
         >
           <div className="flex flex-row h-20 justify-between items-center">
             {/* Logo */}
@@ -21,7 +21,7 @@ function Navbar() {
               </Link>
             </div>
 
-            <nav className="ml-auto flex items-center">
+            <nav className="ml-auto md:flex items-center hidden">
               <ul className="flex flex-1 items-center justify-end space-x-6">
                 <Link
                   to={"/home"}
@@ -56,12 +56,12 @@ function Navbar() {
               </ul>
             </nav>
 
-            <div className="ml-auto hidden md:flex items-center justify-center gap-3">
+            <div className="ml-auto flex items-center justify-center gap-3">
               <div className="flex text-[20px] items-center justify-center gap-8">
-                <Link to={"/"}>
+                <Link to={"/"} className="hidden">
                   <ion-icon name="person-outline"></ion-icon>
                 </Link>
-                <Link to={"/"}>
+                <Link to={"/"} className="hidden">
                   <ion-icon name="search-outline"></ion-icon>
                 </Link>
                 <Link to={"/"}>

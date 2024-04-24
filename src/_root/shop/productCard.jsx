@@ -9,9 +9,9 @@ export default function productCard({ product }) {
       className="bg-white text-left rounded-lg p-4 cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg"
       onClick={() => navigate(`/products/${product.id}`)}
     >
-      <div className="relative text-left overflow-hidden w-48 h-48 mx-auto mb-4">
+      <div className="relative overflow-hidden w-48 h-48 mx-auto mb-4">
         <img
-          className="absolute object-contain inset-0 w-84 h-full"
+          className="absolute object-contain  w-28 sm:w-64 md:w-84 h-full"
           src={product.image}
           alt=""
         />
