@@ -8,6 +8,8 @@ import CheckOut from "./_root/CheckOut/index";
 import Shop from "./_root/shop/index";
 import ScrollToTop from "./BackToTop/ScrollToTop";
 import ProductDetail from "./_root/productDetail/index";
+import ProductDetail from "./_root/productDetail/index";
+import ScrollToTop from "./BackToTop/ScrollToTop";
 
 function App() {
   return (
