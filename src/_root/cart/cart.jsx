@@ -12,7 +12,6 @@ export default function Cart() {
           <div>Product</div>
           <div>Price</div>
           <div>Quantity</div>
-          <div>Subtotal</div>
         </div>
         <div className="flex flex-row mt-12 gap-6 items-center justify-start">
           <div className="flex flex-row gap-6 text-gray-400 items-center justify-start">
@@ -26,19 +25,22 @@ export default function Cart() {
             placeholder="1"
             min="1"
           />
-          <div>Rs. 50,000.00</div>
           <div className="text-[20px] text-[#FBEBB5] font-bold cursor-pointer">
             <ion-icon name="trash-outline"></ion-icon>
           </div>
         </div>
+        <div className="flex flex-col  justify-end items-end text-left">
+          <div>Subtotal</div>
+          <div>Rs. 50,000.00</div>
+        </div>
       </div>
-      <div className="flex flex-col p-5 h-[20em] w-[30em] items-center justify-start gap-3 bg-[#FFF9E5] rounded-md">
+      <div className="flex flex-col p-5 h-[20em] w-[22em] xl:w-[30em] items-center justify-start gap-3 bg-[#FFF9E5] rounded-md">
         <div className="text-[25px] font-bold">Cart Totals</div>
-        <div className="flex mt-6 items-center justify-between gap-x-[8em]">
+        <div className="flex mt-6 items-center justify-between gap-x-[3em] xl:gap-x-[8em]">
           <div className="text-black font-bold">Subtotal</div>
           <div className="text-grey-200">Rs. 50,000.00</div>
         </div>
-        <div className="flex items-center justify-between gap-x-[8em]">
+        <div className="flex items-center justify-between gap-x-[3em] xl:gap-x-[8em]">
           <div className="text-black font-bold">Total</div>
           <div className="text-[#B88E2F]">Rs. 50,000.00</div>
         </div>
