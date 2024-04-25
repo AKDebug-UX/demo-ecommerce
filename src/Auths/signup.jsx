@@ -41,7 +41,7 @@ const SignupForm = () => {
         uid: users.user.uid,
         email: users.user.email,
         time: Timestamp.now(),
-        appName: "SquareMaX",
+        appName: "Ecommerce",
       };
       const userRef = collection(db, "users");
       await addDoc(userRef, user);

@@ -1,92 +1,100 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
-import { auth, db } from "../../firebase-config";
-import {
-  addDoc,
-  collection,
-  Timestamp,
-  // doc,
-  // serverTimestamp,
-  // updateDoc,
-} from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase-config";
 
 export default function FormField() {
-  const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [country, setCountry] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [town, setTown] = useState("");
+  const [province, setProvince] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [additionalInfo, setAdditionalInfo] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  // ============================== SIGN UP
   const createUserAccount = async () => {
-    // setLoading(true);
-    if (name === "" || username === "" || email === "" || password === "") {
-      return toast({ title: "All fields are required" });
-    }
-
-    try {
-      const users = await createUserWithEmailAndPassword(auth, email, password);
-
-      console.log(users);
-
-      const user = {
-        name: name,
-        username: username,
-        uid: users.user.uid,
-        email: users.user.email,
-        time: Timestamp.now(),
-        appName: "SquareMaX",
-      };
-      const userRef = collection(db, "users");
-      await addDoc(userRef, user);
-      toast.success("successful", {
+    setLoading(true);
+    if (!firstName || !lastName || !country || !streetAddress || !town || !province || !zipCode || !phone || !email || !additionalInfo) {
+      toast.error("All fields are required", {
         position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: true,
+        autoClose: 5000,
+        hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
         theme: "colored",
       });
-      setName("");
-      setUsername("");
-      setEmail("");
-      setPassword("");
-      navigate("/");
       setLoading(false);
-    } catch (error) {
-      console.log(error);
-      toast.error("EMAIL_EXISTS");
-      setLoading(false);
+      return;
     }
+
+    const billing_details = {
+      firstName,
+      lastName,
+      companyName,
+      country,
+      streetAddress,
+      town,
+      province,
+      zipCode,
+      phone,
+      additionalInfo,
+      email,
+      appName: "Ecommerce",
+      time: new Date(), // Simplified date setting
+    };
+
+    try {
+      const billingRef = collection(db, "billing_details");
+      await addDoc(billingRef, billing_details);
+      toast.success("Account successfully created!");
+      // Clear form fields
+      setFirstName("");
+      setLastName("");
+      setCompanyName("");
+      setCountry("");
+      setStreetAddress("");
+      setTown("");
+      setProvince("");
+      setZipCode("");
+      setPhone("");
+      setEmail("");
+      setAdditionalInfo("");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to create account.");
+    }
+    setLoading(false);
   };
 
   return (
-    <form className="px-5">
+    <section className="px-5">
       <h1 className="text-3xl font-bold mb-5">Billing details</h1>
       <div className="grid gap-6 mb-6 md:grid-cols-2">
         <div>
-          <label for="first_name" className="block mb-2 text-sm font-medium ">
-            First name
-          </label>
+          <label className="block mb-2 text-sm font-medium ">First name</label>
           <input
             type="text"
-            id="first_name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="Akorede"
             className="bg-gray-30 text-sm rounded-md block w-full p-3.5 border border-gray-300"
             required
           />
         </div>
         <div>
-          <label for="last_name" className="block mb-2 text-sm font-medium">
-            Last name
-          </label>
+          <label className="block mb-2 text-sm font-medium">Last name</label>
           <input
             type="text"
-            id="last_name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder="Salaudeen"
             className="bg-gray-30 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-3.5"
             required
           />
@@ -94,26 +102,28 @@ export default function FormField() {
       </div>
 
       <div>
-        <label for="company" className="block mb-2 text-sm font-medium">
+        <label className="block mb-2 text-sm font-medium">
           Company Name (Option)
         </label>
         <input
           type="text"
-          id="company"
+          value={companyName}
+          onChange={(e) => setCompanyName(e.target.value)}
           className=" mb-5 bg-gray-30 text-sm rounded-md block w-full p-3.5 border border-gray-300"
           required
         />
       </div>
       <div>
-        <label for="phone" className="block mb-2 text-sm font-medium">
+        <label className="block mb-2 text-sm font-medium">
           Country / Region
         </label>
         <select
-          type="phone"
-          id="email"
+          type="text"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
           className=" mb-4 bg-gray-30 text-sm rounded-md block w-full p-3.5 border border-gray-300"
         >
-          <option selected>Choose a country</option>
+          <option disabled>Choose a country</option>
           <option value="US">United States</option>
           <option value="CA">Canada</option>
           <option value="FR">France</option>
@@ -122,37 +132,36 @@ export default function FormField() {
       </div>
 
       <div>
-        <label for="website" className="block mb-2 text-sm font-medium">
-          Street address
-        </label>
-        <input
-          type="url"
-          id="website"
-          className=" mb-5 bg-gray-30 text-sm rounded-md block w-full p-3.5 border border-gray-300"
-          required
-        />
-      </div>
-      <div>
-        <label for="visitors" className="block mb-2 text-sm font-medium">
-          Town / City
-        </label>
+        <label className="block mb-2 text-sm font-medium">Street address</label>
         <input
           type="text"
-          id="visitors"
+          value={streetAddress}
+          onChange={(e) => setStreetAddress(e.target.value)}
           className=" mb-5 bg-gray-30 text-sm rounded-md block w-full p-3.5 border border-gray-300"
           required
         />
       </div>
-      <div class="mb-6">
-        <label for="email" className="block mb-2 text-sm font-medium">
-          Province
-        </label>
+
+      <div>
+        <label className="block mb-2 text-sm font-medium">Town / City</label>
+        <input
+          type="text"
+          value={town}
+          onChange={(e) => setTown(e.target.value)}
+          className=" mb-5 bg-gray-30 text-sm rounded-md block w-full p-3.5 border border-gray-300"
+          required
+        />
+      </div>
+
+      <div className="mb-6">
+        <label className="block mb-2 text-sm font-medium">Province</label>
         <select
-          type="email"
-          id="email"
+          type="text"
+          value={province}
+          onChange={(e) => setProvince(e.target.value)}
           className="bg-gray-30 text-sm rounded-md block w-full p-3.5 border border-gray-300"
         >
-          <option selected>Choose a country</option>
+          <option disabled>Choose a country</option>
           <option value="US">United States</option>
           <option value="CA">Canada</option>
           <option value="FR">France</option>
@@ -160,56 +169,63 @@ export default function FormField() {
         </select>
       </div>
 
-      <div class="mb-6">
-        <label for="password" className="block mb-2 text-sm font-medium">
-          Zip code
-        </label>
+      <div className="mb-6">
+        <label className="block mb-2 text-sm font-medium">Zip code</label>
         <input
-          type="password"
-          id="password"
+          type="text"
+          value={zipCode}
+          onChange={(e) => setZipCode(e.target.value)}
           className="bg-gray-30 text-sm rounded-md block w-full p-3.5 border border-gray-300"
           required
         />
       </div>
-      <div class="mb-6">
-        <label
-          for="confirm_password"
-          className="block mb-2 text-sm font-medium"
-        >
-          Phone
-        </label>
+      <div className="mb-6">
+        <label className="block mb-2 text-sm font-medium">Phone</label>
         <input
-          type="password"
-          id="confirm_password"
+          type="phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
           className="bg-gray-30 text-sm rounded-md block w-full p-3.5 border border-gray-300"
           required
         />
       </div>
 
-      <div class="mb-6">
-        <label
-          for="confirm_password"
-          className="block mb-2 text-sm font-medium"
-        >
-          Email address
-        </label>
+      <div className="mb-6">
+        <label className="block mb-2 text-sm font-medium">Email address</label>
         <input
-          type="password"
-          id="confirm_password"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="bg-gray-30 text-sm rounded-md block w-full p-3.5 border border-gray-300"
           required
         />
       </div>
 
-      <div class="mb-6">
+      <div className="mb-6">
         <input
-          type="password"
-          id="confirm_password"
+          type="type"
+          value={additionalInfo}
+          onChange={(e) => setAdditionalInfo(e.target.value)}
           className="bg-gray-30 text-sm rounded-md block w-full p-3.5 border border-gray-300"
           placeholder="Additional Information"
           required
         />
       </div>
-    </form>
+
+      <button
+        type="submit"
+        onClick={createUserAccount}
+        className="bg-black w-full text-white p-3 rounded-md"
+      >
+        {isLoading ? (
+          <div className="flex gap-3 justify-center items-center">
+            <div className="animate-spin rounded-full h-5 w-5 border-b-4 border-white"></div>
+            Loading...
+          </div>
+        ) : (
+          "Sign Up"
+        )}
+      </button>
+    </section>
   );
 }

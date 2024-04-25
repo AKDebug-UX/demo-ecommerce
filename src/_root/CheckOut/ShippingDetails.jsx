@@ -12,12 +12,12 @@ export default function Grid() {
   }, []);
 
   return (
-    <main class="grid md:grid-cols-2 max-w-[26cm] gap-x-3 justify-center mx-auto my-[2cm] grid-cols-2 bg-white">
-      <section class="flex flex-col bg-white rounded-t-lg">
+    <main className="grid md:grid-cols-2 max-w-[26cm] gap-x-3 justify-center mx-auto my-[2cm] grid-cols-2 bg-white">
+      <section className="flex flex-col bg-white rounded-t-lg">
         <FormField />
       </section>
 
-      <section class="flex flex-col bg-white p-5 mt-3">
+      <section className="flex flex-col bg-white p-5 mt-3">
         <main className="flex flex-row justify-between">
           <div>
             <h3 className="text-xl font-semibold mb-4">Product</h3>
@@ -38,7 +38,7 @@ export default function Grid() {
           </div>
         </main>
 
-        <hr class="h-px my-3 bg-gray-200 border-1 dark:bg-gray-400"></hr>
+        <hr className="h-px my-3 bg-gray-200 border-1 dark:bg-gray-400"></hr>
         <main className="flex flex-col gap-3">
           <section>
             <div className="flex flex-row gap-3">
@@ -73,7 +73,7 @@ export default function Grid() {
           <div className="mt-4">
             <button
               type="button"
-              class="py-4 max-w-[5cm] mx-[4cm] justify-center px-12 me-2 mb-2 text-sm font-normal focus:outline-none bg-white rounded-xl border hover:bg[#fcd34d] hover:text-white dark:border-[#fcd34d] dark:hover:text-white dark:hover:bg-[#fcd34d]"
+              className="py-4 max-w-[5cm] mx-[4cm] justify-center px-12 me-2 mb-2 text-sm font-normal focus:outline-none bg-white rounded-xl border hover:bg[#fcd34d] hover:text-white dark:border-[#fcd34d] dark:hover:text-white dark:hover:bg-[#fcd34d]"
             >
               Place Order
             </button>
