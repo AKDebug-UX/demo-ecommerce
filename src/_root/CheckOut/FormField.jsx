@@ -1,6 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-toastify";
+import { auth, db } from "../../firebase-config";
+import {
+  addDoc,
+  collection,
+  Timestamp,
+  // doc,
+  // serverTimestamp,
+  // updateDoc,
+} from "firebase/firestore";
 
 export default function FormField() {
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setLoading] = useState(false);
+
+  // ============================== SIGN UP
+  const createUserAccount = async () => {
+    // setLoading(true);
+    if (name === "" || username === "" || email === "" || password === "") {
+      return toast({ title: "All fields are required" });
+    }
+
+    try {
+      const users = await createUserWithEmailAndPassword(auth, email, password);
+
+      console.log(users);
+
+      const user = {
+        name: name,
+        username: username,
+        uid: users.user.uid,
+        email: users.user.email,
+        time: Timestamp.now(),
+        appName: "SquareMaX",
+      };
+      const userRef = collection(db, "users");
+      await addDoc(userRef, user);
+      toast.success("successful", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      setName("");
+      setUsername("");
+      setEmail("");
+      setPassword("");
+      navigate("/");
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      toast.error("EMAIL_EXISTS");
+      setLoading(false);
+    }
+  };
+
   return (
     <form className="px-5">
       <h1 className="text-3xl font-bold mb-5">Billing details</h1>

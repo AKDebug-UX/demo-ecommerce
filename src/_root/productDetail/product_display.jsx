@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import fetchProductById from "../../utils/Products/GetProductById";
 import { useParams } from "react-router-dom";
 import removeBackground from "../../utils/Products/removeImageBackground";
-import Add_to_cart from '../productDetail/add_to_cart'
+import Add_to_cart from "../productDetail/add_to_cart";
+
 export default function ProductDisplay() {
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
   const { productId } = useParams();
   console.log(productId);
 
@@ -21,6 +23,12 @@ export default function ProductDisplay() {
 
     fetchProductData();
   }, [productId]); // Include productId in the dependency array
+
+  // Handlers for incrementing and decrementing quantity
+  const handleIncrement = () => setQuantity((prev) => prev + 1);
+  const handleDecrement = () =>
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
   return (
     <div>
       <section className="product-display">
@@ -28,11 +36,7 @@ export default function ProductDisplay() {
           <div className="grid grid-cols-1 md:grid-cols-2 md:m-10 md:mx-28">
             <div className="col ">
               <div className="image-display">
-                <img
-                  src={product.image}
-                  className=" p-4 w-96"
-                  alt=""
-                />
+                <img src={product.image} className=" p-4 w-96" alt="" />
               </div>
             </div>
 
@@ -53,19 +57,30 @@ export default function ProductDisplay() {
                 </p>
 
                 <div className="flex gap-10 items-center my-6">
-                <div className="border w-20 flex justify-center items-center py-1 px-auto">
-                  <button className="text-gray-900 font-semibold px-1.5">
-                    -
-                  </button>
-                  <input type="text" value={product.quantity} className="w-8 border-none text-center" />
-                  <button className="text-gray-900 font-semibold px-1.5">
-                    +
-                  </button>
-                </div>
+                  <div className="border w-20 flex justify-center items-center py-1 px-auto">
+                    <button
+                      className="text-gray-900 font-semibold px-1.5"
+                      onClick={handleDecrement}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="text"
+                      value={quantity}
+                      readOnly
+                      className="w-8 border-none text-center"
+                    />
+                    <button
+                      className="text-gray-900 font-semibold px-1.5"
+                      onClick={handleIncrement}
+                    >
+                      +
+                    </button>
+                  </div>
 
-                <div className="add-to-cart">
-                    <Add_to_cart product={product}/>
-                </div>
+                  <div className="add-to-cart">
+                    <Add_to_cart quantity={quantity} product={product} />
+                  </div>
                 </div>
               </div>
             </div>

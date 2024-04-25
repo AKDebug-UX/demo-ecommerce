@@ -1,10 +1,16 @@
-import React from "react";
-import { useState } from "react";
-import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { useEffect, useState } from "react";
 import FormField from "./FormField";
 
 export default function Grid() {
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const savedTotal = localStorage.getItem("total");
+    if (savedTotal) {
+      setTotal(parseFloat(savedTotal));
+    }
+  }, []);
+
   return (
     <main class="grid md:grid-cols-2 max-w-[26cm] gap-x-3 justify-center mx-auto my-[2cm] grid-cols-2 bg-white">
       <section class="flex flex-col bg-white rounded-t-lg">
@@ -15,19 +21,19 @@ export default function Grid() {
         <main className="flex flex-row justify-between">
           <div>
             <h3 className="text-xl font-semibold mb-4">Product</h3>
-            <p className="text-xs font-medium mb-4 text-[#94a3b8]">
+            {/* <p className="text-xs font-medium mb-4 text-[#94a3b8]">
               MIRAGE MR-AT172 285/65
-            </p>
+            </p> */}
             <p className="text-xs font-semibold mb-4">Subtotal</p>
             <p className="text-xs font-semibold mb-4">Total</p>
           </div>
 
           <div>
             <h3 className="text-xl font-semibold mb-4">Subtotal</h3>
-            <p className="text-xs font-medium mb-4">Rs. 50,000.00</p>
-            <p className="text-xs font-medium mb-4">Rs. 50,000.00</p>
+            {/* <p className="text-xs font-medium mb-4">${total.toFixed(2)}</p> */}
+            <p className="text-xs font-medium mb-4">${total.toFixed(2)}</p>
             <p className="text-xl font-semibold mb-4 text-[#fcd34d]">
-              Rs. 50,000.00
+              ${total.toFixed(2)}
             </p>
           </div>
         </main>
