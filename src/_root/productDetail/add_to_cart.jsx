@@ -9,6 +9,7 @@ export default function CartPage({ product, quantity }) {
     };
     addToCart(productWithQuantity);
   };
+  
   return (
     <div>
       <button
