@@ -7,8 +7,6 @@ export default function CartPage({ product, quantity }) {
       ...product,
       quantity: quantity
     };
-
-    // Pass the object to the addToCart utility function
     addToCart(productWithQuantity);
   };
   return (
