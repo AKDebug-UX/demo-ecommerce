@@ -4,7 +4,7 @@ export default function CartPage({ product }) {
   return (
     <div>
       <button
-        className="border-0 text-gray-900 text-xl font-medium"
+        className="border-0 text-gray-900 text-sm font-medium"
         onClick={() => addToCart(product)}
       >
         Add to cart
