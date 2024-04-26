@@ -23,7 +23,6 @@ export default function Cart() {
   // Effect to update localStorage when products change
   useEffect(() => {
     const subtotal = getSubtotal();
-    // localStorage.setItem('subtotal', subtotal);
     localStorage.setItem('total', subtotal); // Assuming no tax or shipping for simplification
     localStorage.setItem('cartItems', JSON.stringify(products));
   }, [products]);
