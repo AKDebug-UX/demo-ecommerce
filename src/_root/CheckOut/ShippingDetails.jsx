@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import FormField from "./FormField";
 
-export default function Grid() {
+export default function Grid({ createUserAccount, isLoading }) {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -14,7 +14,10 @@ export default function Grid() {
   return (
     <main className="grid md:grid-cols-2 max-w-[26cm] gap-x-3 justify-center mx-auto my-[2cm] grid-cols-2 bg-white">
       <section className="flex flex-col bg-white rounded-t-lg">
-        <FormField />
+        <FormField
+          createUserAccount={createUserAccount}
+          isLoading={isLoading}
+        />
       </section>
 
       <section className="flex flex-col bg-white p-5 mt-3">
@@ -72,10 +75,18 @@ export default function Grid() {
 
           <div className="mt-4">
             <button
-              type="button"
-              className="py-4 max-w-[5cm] mx-[4cm] justify-center px-12 me-2 mb-2 text-sm font-normal focus:outline-none bg-white rounded-xl border hover:bg[#fcd34d] hover:text-white dark:border-[#fcd34d] dark:hover:text-white dark:hover:bg-[#fcd34d]"
+              type="submit"
+              onClick={createUserAccount}
+              className="py-4 max-w-[5cm] mx-[4cm] justify-center px-12 me-2 mb-2 text-sm font-normal focus:outline-none bg-white rounded-xl border hover:bg-[#fcd34d] hover:text-white"
             >
-              Place Order
+              {isLoading ? (
+                <div className="flex gap-3 justify-center items-center">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-4 border-white"></div>
+                  Loading...
+                </div>
+              ) : (
+                "Place Order"
+              )}
             </button>
           </div>
         </main>

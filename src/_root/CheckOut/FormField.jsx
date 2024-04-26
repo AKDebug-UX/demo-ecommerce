@@ -123,7 +123,7 @@ export default function FormField() {
           onChange={(e) => setCountry(e.target.value)}
           className=" mb-4 bg-gray-30 text-sm rounded-md block w-full p-3.5 border border-gray-300"
         >
-          <option disabled>Choose a country</option>
+          <option >Choose a country</option>
           <option value="US">United States</option>
           <option value="CA">Canada</option>
           <option value="FR">France</option>
@@ -161,7 +161,7 @@ export default function FormField() {
           onChange={(e) => setProvince(e.target.value)}
           className="bg-gray-30 text-sm rounded-md block w-full p-3.5 border border-gray-300"
         >
-          <option disabled>Choose a country</option>
+          <option >Choose a country</option>
           <option value="US">United States</option>
           <option value="CA">Canada</option>
           <option value="FR">France</option>
@@ -211,21 +211,6 @@ export default function FormField() {
           required
         />
       </div>
-
-      <button
-        type="submit"
-        onClick={createUserAccount}
-        className="bg-black w-full text-white p-3 rounded-md"
-      >
-        {isLoading ? (
-          <div className="flex gap-3 justify-center items-center">
-            <div className="animate-spin rounded-full h-5 w-5 border-b-4 border-white"></div>
-            Loading...
-          </div>
-        ) : (
-          "Sign Up"
-        )}
-      </button>
     </section>
   );
 }
