@@ -28,7 +28,7 @@ export default function Grid({
     text: "Pay Now",
     onSuccess: () =>
       toast.success("Thanks for doing business with us! Come back soon!!"),
-    onClose: () => toast.error("Wait! Don't leave :("),
+    // onClose: () => toast.error("Wait! Don't leave :("),
   };
 
   return (
@@ -90,16 +90,11 @@ export default function Grid({
             // disabled={!isEdited}
             type="submit"
             onClick={createUserAccount}
-            className="py-4 max-w-[5cm] mx-[4cm] justify-center px-12 me-2 mb-2 text-sm font-normal focus:outline-none bg-white rounded-xl border hover:bg-[#fcd34d] hover:text-white"
           >
-            {isLoading ? (
-              <div className="flex gap-3 justify-center items-center">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-4 border-white"></div>
-                Loading...
-              </div>
-            ) : (
-              <PaystackButton {...componentProps} />
-            )}
+            <PaystackButton
+              className="py-4 max-w-[5cm] mx-[4cm] justify-center px-12 me-2 mb-2 text-sm font-normal focus:outline-none bg-white rounded-xl border hover:bg-[#fcd34d] hover:text-white"
+              {...componentProps}
+            />
           </button>
         </div>
       </main>

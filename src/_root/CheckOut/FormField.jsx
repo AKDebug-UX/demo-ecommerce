@@ -22,6 +22,7 @@ export default function FormField() {
 
   const createUserAccount = async () => {
     setLoading(true);
+    setIsEdited(false);
     if (
       !firstName ||
       !lastName ||
