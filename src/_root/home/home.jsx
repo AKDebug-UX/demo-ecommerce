@@ -13,7 +13,7 @@ export default function home() {
     <div>
       <Navbar />
       <Hero />
-      <Section_One />
+      {/* <Section_One /> */}
       <div className="text-center mt-10 font-bold text-[30px]">
         <div>Top Picks For You</div>
         <TopPicks />
